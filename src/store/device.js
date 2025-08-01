@@ -31,45 +31,50 @@ export const useDeviceStore = defineStore('device', {
             this.instantTraffic = null
             this.mobile = {}
             this.gsm = null
-            const deviceData = await axios.get('/api/telemetry/'+deviceId)
-            this.isLoading = false
-            if(deviceData) {
-                this.device = deviceData.data.data
-                const typeCctv = ['ptz', 'static']
-                const ip = this.device.cctvIp
-                if(ip) {
-                    this.cctvs = []
-                    for(let i = 0; i < typeCctv.length; i++) {
-                        this.cctvs.push({type: typeCctv[i], url: `${cctvUrl}/${ip}_${typeCctv[i]}/index.m3u8`})
+            try {
+                const deviceData = await axios.get('/api/telemetry/'+deviceId)
+                this.isLoading = false
+                if(deviceData) {
+                    this.device = deviceData.data.data
+                    const typeCctv = ['ptz', 'static']
+                    const ip = this.device.cctvIp
+                    if(ip) {
+                        this.cctvs = []
+                        for(let i = 0; i < typeCctv.length; i++) {
+                            this.cctvs.push({type: typeCctv[i], url: `${cctvUrl}/${ip}_${typeCctv[i]}/index.m3u8`})
+                        }
                     }
                 }
-            }
-            const id = deviceData.data.data._id
-            const waterStat = await axios.get('/api/logger/stat/'+id)
-            if(waterStat) {
-                this.waterStat = waterStat.data.data[0]
-            }
-            const waterCategory = await axios.get('/api/threshold/'+id)
-            if(waterCategory) {
-                this.waterCategory = waterCategory.data.data
-            }
-            const mobileUsage = await axios.get('/api/mobile-usage/'+id)
-            this.mobile['yesterday'] = mobileUsage?.data?.data?.yesterday || 0
-            this.mobile['total7d'] = mobileUsage?.data?.data?.total7d || 0
-            this.mobile['total30d'] = mobileUsage?.data?.data?.total30d || 0
+                const id = deviceData.data.data._id
+                const waterStat = await axios.get('/api/logger/stat/'+id)
+                if(waterStat) {
+                    this.waterStat = waterStat.data.data[0]
+                }
+                const waterCategory = await axios.get('/api/threshold/'+id)
+                if(waterCategory) {
+                    this.waterCategory = waterCategory.data.data
+                }
+                const mobileUsage = await axios.get('/api/mobile-usage/'+id)
+                this.mobile['yesterday'] = mobileUsage?.data?.data?.yesterday || 0
+                this.mobile['total7d'] = mobileUsage?.data?.data?.total7d || 0
+                this.mobile['total30d'] = mobileUsage?.data?.data?.total30d || 0
 
-            const alerts = await axios.get('/api/alert/'+id)
-            if(alerts) {
-                this.alerts = alerts.data.data
-            }
+                const alerts = await axios.get('/api/alert/'+id)
+                if(alerts) {
+                    this.alerts = alerts.data.data
+                }
 
-            const sms = await axios.get('/api/sms/'+id)
-            if(sms) {
-                this.sms = sms.data.data
-            }
+                const sms = await axios.get('/api/sms/'+id)
+                if(sms) {
+                    this.sms = sms.data.data
+                }
 
-            const topic = ['device/'+id, 'sensor/'+id, 'status/#', 'logger/'+id, 'alert/'+id, 'sms/'+id]
-            this.switchTopic(topic)
+                const topic = ['device/'+id, 'sensor/'+id, 'status/#', 'logger/'+id, 'alert/'+id, 'sms/'+id]
+                this.switchTopic(topic)
+            } catch (error) {
+                this.isLoading = false
+            }
+            
 
         },
         async getAllDevice () {
