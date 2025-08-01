@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+.hover-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+.hover-scroll:hover {
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+.hover-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+.hover-scroll::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+.hover-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Transition router view */
+.fade-enter-active,
+.fade-leave-active {
+    transition-duration: 0.2s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0
+}
+
+/* Modal */
+.modal-enter-active{
+  transition: all 0.3s linear;
+}
+
+.modal-leave-active {
+  transition: all 0.3s linear;
+}
+.modal-enter-from, .modal-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active {
+  transition: all 0.3s;
+  animation: slide 0.3s;
+}
+.slide-leave-active {
+  transition: all 0.2s;
+  animation: slide 0.2s reverse;
+}
+.slide-enter-from, .slide-leave-to {
+  opacity: 0;
+}
+
+@keyframes slide {
+  0% {
+      transform: translateY(-300px);
+  }
+  100% {
+      transform: translateY(0px);
+  }
+}
+/* /modal */
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid #fcb812;
+  border-right-color: #344a93;
+  animation: l2 1s infinite linear;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
