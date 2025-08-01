@@ -51,7 +51,7 @@
                     <div class="flex space-x-1.5"><span class="font-mono">{{ store.realTimeFlowRate?.toFixed(2) || 0 }}</span><span class=" text-xs font-light text-gray-400">m/s</span></div>
                 </div>
                 <div class="border-b-4 border-teal-500 flex  justify-between">
-                    <div class="text-xs text-gray-400">Volume</div>
+                    <div class="text-xs text-gray-400">Debit</div>
                     <div class="flex space-x-1.5"><span class="font-mono">{{ store.instantTraffic?.toFixed(2) || 0 }}</span><span class=" text-xs font-light text-gray-400">m³/s</span></div>
                 </div>
             </div>

@@ -30,7 +30,7 @@
                         <th class="text-sm py-2 bg-gray-800 text-left px-3 font-semibold sticky top-0">Tanggal</th>
                         <th class="text-sm py-2 bg-gray-800 px-3 text-right font-semibold sticky top-0">Level air</th>
                         <th class="text-sm py-2 bg-gray-800 px-3 text-right font-semibold sticky top-0">Kecepatan</th>
-                        <th class="text-sm py-2 bg-gray-800 px-3 text-right font-semibold sticky top-0">Volume</th>
+                        <th class="text-sm py-2 bg-gray-800 px-3 text-right font-semibold sticky top-0">Debit</th>
                         <th class="text-sm py-2 bg-gray-800 px-3 text-right font-semibold sticky top-0">Status</th>
                     </tr>
                 </thead>
@@ -44,13 +44,13 @@
                             <i v-else class="ph ph-caret-up-down text-gray-400 ml-1"></i>
                         </td>
                         <td class="px-3 py-1.5 text-xs font-mono text-right">
-                            {{ log?.realTimeFlowRate?.toFixed(2) }} cm
+                            {{ log?.realTimeFlowRate?.toFixed(2) }} m/s
                             <i v-if="log?.realTimeFlowRate > getPrev(i, 'realTimeFlowRate')" class="ph ph-caret-up text-red-500 ml-1"></i>
                             <i v-else-if="log?.realTimeFlowRate < getPrev(i, 'realTimeFlowRate')" class="ph ph-caret-down text-green-500 ml-1"></i>
                             <i v-else class="ph ph-caret-up-down text-gray-400 ml-1"></i>
                         </td>
                         <td class="px-3 py-1.5 text-xs font-mono text-right">
-                            {{ log?.instantTraffic?.toFixed(2)}} cm
+                            {{ log?.instantTraffic?.toFixed(2)}} m³/s
                             <i v-if="log?.instantTraffic > getPrev(i, 'instantTraffic')" class="ph ph-caret-up text-red-500 ml-1"></i>
                             <i v-else-if="log?.instantTraffic < getPrev(i, 'instantTraffic')" class="ph ph-caret-down text-green-500 ml-1"></i>
                             <i v-else class="ph ph-caret-up-down text-gray-400 ml-1"></i>
@@ -283,7 +283,7 @@ import { saveAs } from 'file-saver';
         switch (parameter.value) {
             case 'level': return 'Ketinggian Air (cm)'
             case 'kecepatan': return 'Kecepatan Air (m/s)'
-            case 'volume': return 'Volume Air (m³/s)'
+            case 'volume': return 'Debit Air (m³/s)'
             default: return ''
         }
     }
@@ -434,7 +434,7 @@ import { saveAs } from 'file-saver';
             } else if (parameter.value == 'kecepatan') {
                 title = 'Laporan Kecepatan Air (m/s)'
             } else if (parameter.value == 'volume') {
-                title = 'Laporan Volume Air (m³/s)'
+                title = 'Laporan Debit Air (m³/s)'
             }
             if(timeRange.value == 'real') {
                 title += ' Waktu nyata'
@@ -483,7 +483,7 @@ import { saveAs } from 'file-saver';
                 [title], // baris 1: judul
                 [`Tanggal Unduh: ${downloadDate}`], // baris 2: tanggal unduh
                 [], // baris 3 kosong
-                ['Tanggal', 'Level Air (cm)', 'Kecepatan (m/s)', 'Volume (m³/s)', 'Status'] // baris 4: header tabel
+                ['Tanggal', 'Level Air (cm)', 'Kecepatan (m/s)', 'Debit (m³/s)', 'Status'] // baris 4: header tabel
             ]
 
             // 2. Tambahkan data

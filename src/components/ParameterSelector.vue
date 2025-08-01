@@ -28,7 +28,7 @@ const props = defineProps({
         default: () => [
             {label: 'Level', value: 'level', color: 'bg-orange-500'},
             {label: 'Kecepatan', value: 'kecepatan', color: 'bg-sky-500'},
-            {label: 'Volume', value: 'volume', color: 'bg-teal-500'}
+            {label: 'Debit', value: 'volume', color: 'bg-teal-500'}
         ]
     }
 })

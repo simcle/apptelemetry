@@ -25,7 +25,7 @@
                     </form>
                 </div>
                 <div class="text-center text-gray-500 mt-5 text-xs">
-                    <div>Nusa Dinamika Teknologi @2025</div>
+                    <div>Nusa Dinamika Persada @2025</div>
                 </div>
             </div>
         </div>
