@@ -90,8 +90,9 @@ const selectChannel = (val) => {
 
 const streamURL = ref('') //
 watch(()=> store.cctvs, (val) => {
+  console.log('hallo')
   selectChannel(val[0])
-}, {deep: true})
+}, {immediate: true,deep: true})
 
 watch(()=> streamURL.value, (val) => {
   startPlayer()
