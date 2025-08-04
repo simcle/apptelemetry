@@ -61,6 +61,9 @@
                     </div>
                 </div>
             </div>
+            <div class="py-1.5 px-3 text-center text-xs text-yellow-500">
+                Developed by Nusa Dinamika Persada
+            </div>
           
         </div>
     </div>

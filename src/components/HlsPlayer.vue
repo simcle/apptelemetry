@@ -6,6 +6,7 @@
       class="w-full"
     ></video>
     <div v-if="isLoading" class="absolute bg-gray-950 inset-0 z-10 flex items-center justify-center">Loading...</div>
+    <div v-if="errCctv" class="absolute bg-gray-950 inset-0 z-10 flex items-center justify-center">[error] cctv stream gagal dimuat</div>
     <div class="absolute top-1 right-0 z-10">
       <ul class="">
         <li v-for="(ch, i) in store.cctvs" :key="i" class="cursor-pointer px-1.5 py-0.5">
@@ -95,6 +96,7 @@ watch(()=> store.cctvs, (val) => {
 }, {immediate: true,deep: true})
 
 watch(()=> streamURL.value, (val) => {
+  errorCount = 0
   startPlayer()
 })
 let hideTimeout = null
@@ -148,8 +150,11 @@ function exitFullscreen() {
 
 
 let hls = null
-
+let errorCount = 0
+const maxError = 5
+const errCctv = ref(false)
 function startPlayer() {
+  errCctv.value = false
   if(!streamURL.value) return
   if (hls) {
     hls.destroy()
@@ -170,6 +175,16 @@ function startPlayer() {
     console.warn('HLS error:', data)
     if (data.fatal) {
       console.log('Fatal error, reloading stream...')
+      errorCount++
+      if(errorCount > maxError) {
+        isLoading.value = false
+        if(hls) {
+          hls.destroy
+          hls = null
+        }
+        errCctv.value = true
+        return
+      }
       setTimeout(() => {
         startPlayer()
       }, 2000) // reload setelah 2 detik

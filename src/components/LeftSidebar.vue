@@ -96,7 +96,10 @@
                 </div>
             </div>
             <div class="px-3">
-                <div class="flex items-center space-x-1.5 mb-1.5"><i class="ph ph-solar-panel"></i><span>Solar Panel</span></div>
+                <div class="flex items-center justify-between border-b border-gray-800">
+                    <div class="flex items-center space-x-1.5 mb-1.5"><i class="ph ph-solar-panel"></i><span>Solar Panel</span></div>
+                    <div class="text-xs text-yellow-500">Powered by Solar Nusantara</div>
+                </div>
                 <div class="grid grid-cols-5 pt-2 gap-1.5">
                     <div class="col-span-1 border-2 mt-3 rounded-lg border-gray-700 flex items-center justify-center relative p-0.5">
                         <div class="w-full h-full relative overflow-hidden rounded flex items-center justify-center z-20 bg-gray-800">
