@@ -19,6 +19,22 @@ export const useDeviceStore = defineStore('device', {
         alerts: [],
         sms: [],
         LoggerData: [],
+        panelSurya: {
+            voltage: 0,
+            current: 0,
+            power: 0
+        },
+        battery: {
+            voltage: 0,
+            current: 0,
+            soc: 0,
+            temperature: 0
+        },
+        load: {
+            voltage: 0,
+            current: 0,
+            power: 0
+        },
         client: null ,
         connected: false,
         currentTopic: null
@@ -96,6 +112,46 @@ export const useDeviceStore = defineStore('device', {
         onCurrentLogger (calback) {
             emitter.on('currentLogger', calback)
         },
+        resetData() {
+            this.panelSurya = { voltage: 0, current: 0, power: 0 }
+            this.battery = { voltage: 0, current: 0, soc: 0, temperature: 0 }
+            this.load = { voltage: 0, current: 0, power: 0 }
+        },
+        updateSolarPanel(dataArray) {
+            dataArray.forEach(item => {
+                switch (item.name) {
+                case 'panel_surya':
+                    const panel = JSON.parse(item.data)
+                    this.panelSurya.voltage = panel[0] / 100
+                    this.panelSurya.current = panel[1] / 100
+                    this.panelSurya.power   = ((panel[3] << 16) | panel[2]) / 100
+                    break
+
+                case 'battery':
+                    const battery = JSON.parse(item.data)
+                    this.battery.voltage = battery[0] / 100
+                    this.battery.current = ((battery[2] << 16) | battery[1]) / 100
+                    break
+
+                case 'battery_soc':
+                    const soc = JSON.parse(item.data)
+                    this.battery.soc = soc[0]
+                    break
+
+                case 'battery_temp':
+                    const temp = JSON.parse(item.data)
+                    this.battery.temperature = temp[0] / 100
+                    break
+
+                case 'load':
+                    const load = JSON.parse(item.data)
+                    this.load.voltage = load[0] / 100
+                    this.load.current = load[1] / 100
+                    this.load.power   = ((load[3] << 16) | load[2]) / 100
+                    break
+                }
+            })
+        },
         // MQTT CONNECTION
         async connect () {
             return new Promise((resolve, reject) => {
@@ -131,6 +187,11 @@ export const useDeviceStore = defineStore('device', {
                         const raw = JSON.parse(message.toString())
                         this.gsm = raw?.gsm
                         this.mobile['usage'] = raw?.mobile?.tx + raw?.mobile?.rx
+                        console.log(raw?.solar_panel)
+                        if(raw?.solar_panel) {
+                            const data = raw?.solar_panel
+                            this.updateSolarPanel(data)
+                        }
                         // this.device['isOnline'] = true
                     }
                     if(topic.startsWith('status/')) {
@@ -207,6 +268,8 @@ export const useDeviceStore = defineStore('device', {
             if(this.currentTopic) {
                 await this.unsubscribe(this.currentTopic)
             }
+            const solarStore = useDeviceStore()
+            solarStore.resetData()
             await this.subscribe(newTopic)
             this.currentTopic = newTopic
         } 

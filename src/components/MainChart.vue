@@ -28,9 +28,9 @@
                 <thead>
                     <tr>
                         <th class="text-sm py-2 bg-gray-800 text-left px-3 font-semibold sticky top-0">Tanggal</th>
-                        <th class="text-sm py-2 bg-gray-800 px-3 text-right font-semibold sticky top-0">Level air</th>
-                        <th class="text-sm py-2 bg-gray-800 px-3 text-right font-semibold sticky top-0">Kecepatan</th>
-                        <th class="text-sm py-2 bg-gray-800 px-3 text-right font-semibold sticky top-0">Debit</th>
+                        <th class="text-sm py-2 bg-gray-800 pr-9 text-right font-semibold sticky top-0">Level air</th>
+                        <th class="text-sm py-2 bg-gray-800 pr-9 text-right font-semibold sticky top-0">Kecepatan</th>
+                        <th class="text-sm py-2 bg-gray-800 pr-9 text-right font-semibold sticky top-0">Debit</th>
                         <th class="text-sm py-2 bg-gray-800 px-3 text-right font-semibold sticky top-0">Status</th>
                     </tr>
                 </thead>

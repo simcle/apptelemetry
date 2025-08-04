@@ -100,9 +100,9 @@
                 <div class="grid grid-cols-5 pt-2 gap-1.5">
                     <div class="col-span-1 border-2 mt-3 rounded-lg border-gray-700 flex items-center justify-center relative p-0.5">
                         <div class="w-full h-full relative overflow-hidden rounded flex items-center justify-center z-20 bg-gray-800">
-                            <div class="absolute bottom-0 w-full bg-green-500/80" style="height: 0%;"></div>
+                            <div class="absolute bottom-0 w-full bg-green-500/80" :style="{height: store?.battery?.soc +'%'}"></div>
                             <div class="absolute flex items-center">
-                                <div>0%</div>
+                                <div>{{store.battery?.soc}}%</div>
                             </div>
                         </div>
                         <div class="absolute -top-3 w-6 bg-gray-700 h-2.5 rounded-t"></div>
@@ -111,21 +111,21 @@
                         <div class="grid grid-cols-3 text-xs divide-x divide-gray-800">
                             <div>
                                 <div class="w-full py-1 bg-purple-600 text-center">Panel Surya</div>
-                                <div class="text-center p-1">15.3 v</div>
-                                <div class="text-center p-1">3.3 A</div>
-                                <div class="text-center p-1">10.2 w</div>
+                                <div class="text-center p-1">{{ store.panelSurya?.voltage }} v</div>
+                                <div class="text-center p-1">{{ store.panelSurya?.current }} A</div>
+                                <div class="text-center p-1">{{ store.panelSurya?.power }} w</div>
                             </div>
                             <div>
                                 <div class="w-full py-1 bg-blue-600 text-center">Baterai</div>
-                                <div class="text-center p-1">0 v</div>
-                                <div class="text-center p-1">0 A</div>
-                                <div class="text-center p-1">0 w</div>
+                                <div class="text-center p-1">{{ store.battery?.voltage }} v</div>
+                                <div class="text-center p-1">{{ store.battery?.current }} A</div>
+                                <div class="text-center p-1">{{ store.battery?.temperature }} &#8451;</div>
                             </div>
                             <div>
                                 <div class="w-full py-1 bg-yellow-600 text-center">Beban</div>
-                                <div class="text-center p-1">0 v</div>
-                                <div class="text-center p-1">0 A</div>
-                                <div class="text-center p-1">0 w</div>
+                                <div class="text-center p-1">{{ store.load?.voltage }} v</div>
+                                <div class="text-center p-1">{{ store.load?.current }} A</div>
+                                <div class="text-center p-1">{{ store.load?.power }} w</div>
                             </div>
                         </div>
                     </div>

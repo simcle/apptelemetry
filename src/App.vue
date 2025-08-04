@@ -2,7 +2,8 @@
 	<div class="fixed h-screen w-full flex flex-col overflow-hidden bg-black text-gray-300 inset-0 text-sm">
 		<!-- NAVBAR -->
 		<div v-if="auth.isAuth" class="h-14 border-b border-gray-800 bg-gray-900 w-full grid grid-cols-12">
-			<div class="col-span-3 h-full flex items-center px-3">
+			<div class="col-span-3 h-full flex items-center px-3 space-x-3">
+				<img :src="logo" width="30" alt="">
 				<div class="text-xl"><span class="font-semibold text-yellow-500">AWLR</span> <span class="text-blue-500">MONITORING</span></div>
 			</div>
 			<div class="col-span-6 h-full flex items-center justify-center px-3">
@@ -64,6 +65,7 @@
 	import { useRouter } from 'vue-router';
 	import dayjs from 'dayjs';
 	import 'dayjs/locale/id'
+	import logo from './assets/logo.png'
 	dayjs.locale('id')
 
 	const router = useRouter()

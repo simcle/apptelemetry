@@ -2,7 +2,10 @@
     <div class="inset-0 fixed h-screen w-full bg-gray-950 z-50 flex items-center justify-center">
         <div class="w-full px-56 flex flex-row items-center justify-between space-x-32">
             <div class="flex-1 w-auto">
-                <div class="text-3xl font-semibold space-x-3 mb-1.5"><span class="text-yellow-500">AWLR</span><span class="text-blue-500">MONITORING</span></div>
+                <div class=" flex items-center justify-center mb-10">
+                    <img :src="logo" width="200" alt="">
+                </div>
+                <div class="text-3xl font-semibold space-x-3 mb-1.5 text-center"><span class="text-yellow-500">AWLR</span><span class="text-blue-500">MONITORING</span></div>
                 <div>Sistem monitoring AWLR untuk memantau ketinggian muka air sungai secara real-time, menerima peringatan dini banjir, dan melihat status perangkat secara terpusat.</div>
             </div>
             <div>
@@ -39,7 +42,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../store/auth';
-
+import logo from '../assets/logo.png'
 const router = useRouter()
 const store = useAuthStore()
 const isLoading = ref(false)

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="show" @click.self="close" @keydown.esc="close" class="fixed inset-0 bg-white/20 backdrop-blur-[2px] z-10 flex items-start justify-center p-10">
+    <div v-if="show" @click.self="close" @keydown.esc="close" class="fixed inset-0 bg-white/20 backdrop-blur-[2px] z-30 flex items-start justify-center p-10">
         <div class="w-full max-w-xl bg-gray-900 rounded-lg shadow-lg overflow-hidden">
             <div class="flex items-center border-b border-gray-800 relative">
                 <input 
