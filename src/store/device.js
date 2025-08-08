@@ -181,7 +181,6 @@ export const useDeviceStore = defineStore('device', {
                                 ...this.waterStat,
                                 lastWaterLevel: parseFloat(raw?.level)
                             }
-                            console.log(raw)
                             this.instantTraffic = parseFloat(raw?.instantTraffic)
                             this.realTimeFlowRate = parseFloat(raw?.realTimeFlowRate)
                             emitter.emit('currentSensor', raw)
@@ -191,7 +190,6 @@ export const useDeviceStore = defineStore('device', {
                         const raw = JSON.parse(message.toString())
                         this.gsm = raw?.gsm
                         this.mobile['usage'] = raw?.mobile?.tx + raw?.mobile?.rx
-                        console.log(raw?.solar_panel)
                         if(raw?.solar_panel) {
                             const data = raw?.solar_panel
                             this.updateSolarPanel(data)

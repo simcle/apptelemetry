@@ -68,7 +68,7 @@
                 <div>
                     <label class="text-gray-400" for="latitude">Elevasi ( mdpl )<span class="text-red-500">*</span></label>
                     <div class="mt-1.5">
-                        <input v-model="form.elevasi" @keydown="errors.elevasi = ''" :class="{'border-red-500':errors.elevasi}" type="text" id="latitude" class="w-full h-9 px-3 bg-gray-950 border rounded focus:outline-none border-gray-700 placeholder:text-gray-700" placeholder="20" autocomplete="off">
+                        <input v-model="form.elevasi" @keydown="errors.elevasi = ''" :class="{'border-red-500':errors.elevasi}" type="text" id="elevasi" class="w-full h-9 px-3 bg-gray-950 border rounded focus:outline-none border-gray-700 placeholder:text-gray-700" placeholder="20" autocomplete="off">
                     </div>
                     <span class="text-red-500 text-xs">{{ errors.elevasi }}</span>
                 </div>

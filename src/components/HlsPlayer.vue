@@ -87,6 +87,7 @@ let errorCount = 0
 const streamURL = ref('') //
 
 let hideTimeout = null
+let idleTimeout = null
 
 async function sendPTZ(pan, tilt, zoom) {
 	const xml = `
@@ -218,6 +219,7 @@ async function togglePlay() {
   if (!isPlaying.value) {
     await video.value.play()
     isPlaying.value = true
+	resetIdletimeout()
   } else {
     video.value.pause()
     stopStream()
@@ -225,12 +227,20 @@ async function togglePlay() {
 }
 
 function handleMouseMove() {
-  if (!isFullscreen.value) return
-  showControls.value = true
-  clearTimeout(hideTimeout)
-  hideTimeout = setTimeout(() => {
-    showControls.value = false
-  }, 2500)
+	resetIdletimeout()
+	if (!isFullscreen.value) return
+	showControls.value = true
+	clearTimeout(hideTimeout)
+	hideTimeout = setTimeout(() => {
+		showControls.value = false
+	}, 2500)
+}
+
+function resetIdletimeout () {
+	clearTimeout(idleTimeout)
+	idleTimeout = setInterval(() => {
+		stopStream()
+	}, 2 * 60 * 1000)
 }
 
 const stopStream = () => {
