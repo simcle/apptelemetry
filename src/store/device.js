@@ -177,7 +177,10 @@ export const useDeviceStore = defineStore('device', {
                     if(topic.startsWith('sensor/')) {
                         const raw = JSON.parse(message.toString())
                         if(raw) {
-                            this.waterStat['lastWaterLevel'] = parseFloat(raw?.level)
+                            this.waterStat = {
+                                ...this.waterStat,
+                                lastWaterLevel: parseFloat(raw?.level)
+                            }
                             this.instantTraffic = parseFloat(raw?.instantTraffic)
                             this.realTimeFlowRate = parseFloat(raw?.realTimeFlowRate)
                             emitter.emit('currentSensor', raw)

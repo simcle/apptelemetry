@@ -48,7 +48,7 @@
 		</router-view>
 
 		<modal-add-device :show="showModalAddDevice" @done="onDoneAddDevice" @close="showModalAddDevice = false" />
-		<div v-if="device.isLoading" class="absolute h-full w-full bg-white/20 backdrop-blur-[1px] top-0 left-0 flex items-center justify-center">
+		<div v-if="device.isLoading" class="absolute h-full w-full bg-white/20 backdrop-blur-[1px] z-20 top-0 left-0 flex items-center justify-center">
 			<div class="loader"></div>
 		</div>
 		<base-alert />
