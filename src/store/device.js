@@ -181,6 +181,7 @@ export const useDeviceStore = defineStore('device', {
                                 ...this.waterStat,
                                 lastWaterLevel: parseFloat(raw?.level)
                             }
+                            console.log(raw)
                             this.instantTraffic = parseFloat(raw?.instantTraffic)
                             this.realTimeFlowRate = parseFloat(raw?.realTimeFlowRate)
                             emitter.emit('currentSensor', raw)
@@ -195,12 +196,10 @@ export const useDeviceStore = defineStore('device', {
                             const data = raw?.solar_panel
                             this.updateSolarPanel(data)
                         }
-                        // this.device['isOnline'] = true
                     }
                     if(topic.startsWith('status/')) {
                         const [, status] = topic.split('/')
                         const payload = JSON.parse(message.toString())
-                        console.log('status')
                         const deviceId = payload?.clientid
                         if(this.device?._id == deviceId) {
                             if(status == 'online') {

@@ -64,16 +64,23 @@
                 </div>
                 <span class="text-red-500 text-xs">{{ errors.address }}</span>
             </div>
-            <div class="grid grid-cols-2 gap-5 mb-3">
+            <div class="grid grid-cols-3 gap-5 mb-3">
                 <div>
-                    <label class="text-gray-400" for="latitude">Garis Lintang <span class="text-red-500">*</span></label>
+                    <label class="text-gray-400" for="latitude">Elevasi ( mdpl )<span class="text-red-500">*</span></label>
+                    <div class="mt-1.5">
+                        <input v-model="form.elevasi" @keydown="errors.elevasi = ''" :class="{'border-red-500':errors.elevasi}" type="text" id="latitude" class="w-full h-9 px-3 bg-gray-950 border rounded focus:outline-none border-gray-700 placeholder:text-gray-700" placeholder="20" autocomplete="off">
+                    </div>
+                    <span class="text-red-500 text-xs">{{ errors.elevasi }}</span>
+                </div>
+                <div>
+                    <label class="text-gray-400" for="latitude">Garis Lintang ( latitude ) <span class="text-red-500">*</span></label>
                     <div class="mt-1.5">
                         <input v-model="form.location.coordinates[0]" @keydown="errors.latitude = ''" :class="{'border-red-500':errors.latitude}" type="text" id="latitude" class="w-full h-9 px-3 bg-gray-950 border rounded focus:outline-none border-gray-700 placeholder:text-gray-700" placeholder="-6.2000" autocomplete="off">
                     </div>
                     <span class="text-red-500 text-xs">{{ errors.latitude }}</span>
                 </div>
                 <div>
-                    <label class="text-gray-400" for="longitude">Garis Bujur <span class="text-red-500">*</span></label>
+                    <label class="text-gray-400" for="longitude">Garis Bujur ( longitude ) <span class="text-red-500">*</span></label>
                     <div class="mt-1.5">
                         <input v-model="form.location.coordinates[1]" @keydown="errors.longitude = ''" :class="{'border-red-500':errors.longitude}" type="text" id="longitude" class="w-full h-9 px-3 bg-gray-950 border rounded focus:outline-none border-gray-700 placeholder:text-gray-700" placeholder="106.8167" autocomplete="off">
                     </div>
@@ -116,6 +123,7 @@
         },
         gsmNumber: store.device?.gsmNumber || '',
         cctvIp: store.device?.cctvIp || '',
+        elevasi: store.device?.elevasi,
         location: {
             address: store?.device?.location?.address || '',
             coordinates: store.device?.location?.coordinates || []
@@ -134,6 +142,7 @@
             },
             gsmNumber: newDevice?.gsmNumber || '',
             cctvIp: newDevice?.cctvIp || '',
+            elevasi: newDevice?.elevasi || '',
             location: {
                 address: newDevice?.location?.address || '',
                 coordinates: newDevice?.location?.coordinates || []
@@ -178,7 +187,9 @@
         if (!ipRegex.test(form.value.cctvIp)) {
             errors.value.cctvIp = 'IP CCTV tidak valid';
         }
-
+        if(!form.value.elevasi.trim()) {
+            errors.value.elevasi = 'Elevasi wajib diisi'
+        }
 
         if (!form.value.location.address.trim()) {
             errors.value.address = 'Alamat wajib diisi';

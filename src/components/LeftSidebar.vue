@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="flex justify-between px-3.5">
-                <div class=" text-2xl font-mono font-semibold">{{ store.waterStat?.lastWaterLevel?.toFixed(2) || 0 }} <span class="text-sm">cm</span></div>
+                <div class=" text-2xl font-mono font-semibold">{{ store.waterStat?.lastWaterLevel?.toFixed(2) || 0 }} <span class="text-sm">mdpl</span></div>
                 <div v-if="percentageChange < 0" class="flex items-center space-x-1.5 text-xs text-green-500">
                     <i class="ph ph-caret-down"></i>
                     <div class="font-mono">{{ percentageChange?.toFixed(2) }}%</div>
@@ -153,6 +153,10 @@
                         <tr>
                             <td class="text-gray-400 py-1 flex items-start w-full" style="width: 30%">Alamat</td>
                             <td class="py-1">{{ store.device?.location?.address }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-400 py-1 flex items-start w-full" style="width: 30%">Elevasi</td>
+                            <td class="py-1">{{ store.device?.elevasi }} mdpl</td>
                         </tr>
                         <tr>
                              <td class="text-gray-400 py-1 flex items-start w-full" style="width: 30%">Koordinat</td>

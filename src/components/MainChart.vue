@@ -38,7 +38,7 @@
                     <tr v-for="(log, i) in loggers" :key="i">
                         <td class="px-3 py-1.5 text-xs font-mono">{{ formatDate(log?.timestamp, 'table') }}</td>
                         <td class="px-3 py-1.5 text-xs font-mono text-right">
-                            {{ log?.level?.toFixed(2) }} cm
+                            {{ log?.level?.toFixed(2) }} mdpl
                             <i v-if="log?.level > getPrev(i, 'level')" class="ph ph-caret-up text-red-500 ml-1"></i>
                             <i v-else-if="log?.level < getPrev(i, 'level')" class="ph ph-caret-down text-green-500 ml-1"></i>
                             <i v-else class="ph ph-caret-up-down text-gray-400 ml-1"></i>
