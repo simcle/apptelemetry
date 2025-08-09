@@ -292,7 +292,7 @@ import axios from 'axios';
             interval = setTimeout(() => {
                 isLoading.value = false
                 message.value = '[error] Mohon maaf terjadi kesalahan koneksi, silahkan coba beberapa saat lagi!'
-            }, 5000)
+            }, 10000)
         })
     }
     watch(()=> modalQuota.value, (val)=> {

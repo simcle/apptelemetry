@@ -1,5 +1,5 @@
 <template>
-    <div class="p-3.5 h-full overflow-hidden">
+    <div class="p-3.5 flex flex-col h-full overflow-hidden">
         <div class="flex items-center justify-between mb-1">
             <div>
                 <parameter-selector v-model="parameter" />
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div ref="tableRef" class="rounded h-full overflow-y-scroll hover-scroll">
+        <div ref="tableRef" class="rounded overflow-y-scroll hover-scroll">
             <table class="w-full">
                 <thead>
                     <tr>
@@ -189,7 +189,7 @@ import { saveAs } from 'file-saver';
                     y: {
                         title: {
                             display: true,
-                            text: 'Ketinggian Air (cm)',
+                            text: 'Ketinggian Air (mdpl)',
                             font: {
                                 size: 10
                             }
@@ -281,7 +281,7 @@ import { saveAs } from 'file-saver';
     }, {immediate: true})
     const getParameterLabel = () => {
         switch (parameter.value) {
-            case 'level': return 'Ketinggian Air (cm)'
+            case 'level': return 'Ketinggian Air (mdpl)'
             case 'kecepatan': return 'Kecepatan Air (m/s)'
             case 'volume': return 'Debit Air (m³/s)'
             default: return ''
@@ -430,7 +430,7 @@ import { saveAs } from 'file-saver';
             // === Tambahkan Judul ===
             let title
             if(parameter.value == 'level') {
-                title = 'Laporan Ketinggian Air (cm)'
+                title = 'Laporan Ketinggian Air (mdpl)'
             } else if (parameter.value == 'kecepatan') {
                 title = 'Laporan Kecepatan Air (m/s)'
             } else if (parameter.value == 'volume') {
@@ -483,7 +483,7 @@ import { saveAs } from 'file-saver';
                 [title], // baris 1: judul
                 [`Tanggal Unduh: ${downloadDate}`], // baris 2: tanggal unduh
                 [], // baris 3 kosong
-                ['Tanggal', 'Level Air (cm)', 'Kecepatan (m/s)', 'Debit (m³/s)', 'Status'] // baris 4: header tabel
+                ['Tanggal', 'Level Air (mdpl)', 'Kecepatan (m/s)', 'Debit (m³/s)', 'Status'] // baris 4: header tabel
             ]
 
             // 2. Tambahkan data

@@ -5,6 +5,12 @@
 			muted
 			class="w-full"
 		></video>
+		<div v-if="!isPlaying" class="absolute top-0 right-0 px-1.5 py-3 text-yellow-500 z-20">
+			<div class=" leading-0 text-center">
+				<div class="flex items-center justify-center mb-1"><i class="ph ph-security-camera text-lg"></i></div>
+				<div>cctv</div>
+			</div>
+		</div>
 		<div v-if="isLoading" class="absolute bg-gray-950 inset-0 z-10 flex items-center justify-center">Loading...</div>
 		<div v-if="errCctv" class="absolute bg-gray-950 inset-0 z-10 flex items-center justify-center">[error] cctv stream gagal dimuat</div>
 		<div v-if="isPlaying" class="absolute top-1 right-0 z-10">
